@@ -1,6 +1,7 @@
 import boto3
 from botocore.exceptions import ClientError
 from utils import save_results_to_s3, output_results
+import sys
 
 def check_bucket_public_access(bucket_name):
     """Check if S3 bucket has public access blocked"""
@@ -55,7 +56,11 @@ def check_bucket_logging(bucket_name):
 
 
 def main():
-    bucket_name = input("Enter the S3 bucket name to check: ")
+    if len(sys.argv) < 2:
+        print("Usage: python s3_checker.py <bucket_name>")
+        sys.exit(1)
+        
+    bucket_name = sys.argv[1]
     results = {
         "public_access": check_bucket_public_access(bucket_name),
         "versioning": check_bucket_versioning(bucket_name),

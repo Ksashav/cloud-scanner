@@ -1,5 +1,6 @@
 from utils import save_results_to_s3, output_results
 import requests
+import sys
 
 def get_headers(host):
     """Get HTTP headers from a host"""
@@ -38,7 +39,10 @@ def output_header_results(host, results):
             print(f" ✓{header}: {status}")
 
 def main(): 
-    host = input("Enter the host to check headers for: ")
+    if len(sys.argv) < 2:
+        print("Usage: python header_checker.py <host>")
+        sys.exit(1)
+    host = sys.argv[1]
     headers = get_headers(host)
     if not headers:
         print("No headers found, skipping security header check.")
