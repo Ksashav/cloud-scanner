@@ -31,3 +31,17 @@ resource "aws_s3_bucket_public_access_block" "scanner_results" {
     restrict_public_buckets = true
 }
 
+resource "aws_s3_bucket_versioning" "scanner_results" {
+  bucket = aws_s3_bucket.scanner_results.id
+
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+resource "aws_s3_bucket_logging" "scanner_results" {
+  bucket = aws_s3_bucket.scanner_results.id
+
+  target_bucket = aws_s3_bucket.scanner_results.id
+  target_prefix = "logs/"
+}
