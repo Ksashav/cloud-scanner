@@ -62,8 +62,7 @@ def output_results(host, results):
         print(" No open ports found.")
 
 def main():
-    #host = input("Enter the host to scan (e.g., 192.168.1.1): ")
-    host = "127.0.0.1"
+    host = input("Enter the host to scan (e.g., 192.168.1.1): ")
     ports = range(1, 1001)
     results = scan_host(host, ports)
     output_results(host, results)
