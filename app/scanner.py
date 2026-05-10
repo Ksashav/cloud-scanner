@@ -63,7 +63,7 @@ def output_results(host, results):
 
 def main():
     host = input("Enter the host to scan (e.g., 192.168.1.1): ")
-    ports = range(1, 1001)
+    ports = range(1, 10001)
     results = scan_host(host, ports)
     output_results(host, results)
     bucket_name = "cloud-scanner-results-250368538184"
