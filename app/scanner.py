@@ -67,6 +67,10 @@ def main():
     ports = range(1, 1001)
     results = scan_host(host, ports)
     output_results(host, results)
+    bucket_name = "cloud-scanner-results-250368538184"
+    filename = save_results_to_s3(host, results, bucket_name)
+    print(f"Results saved to S3 bucket '{bucket_name}' with filename '{filename}'")
+
 
 if __name__ == "__main__":
     main()
