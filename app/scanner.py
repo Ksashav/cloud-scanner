@@ -2,6 +2,7 @@ import socket
 import boto3
 import json
 from datetime import datetime
+import sys
 
 def scan_port(host, port, timeout=1):
     """Try to connect to a host:port
@@ -62,7 +63,11 @@ def output_results(host, results):
         print(" No open ports found.")
 
 def main():
-    host = input("Enter the host to scan (e.g., 192.168.1.1): ")
+    if len(sys.argv) < 2:
+        print("Usage: python scanner.py <host>")
+        sys.exit(1)
+        
+    host = sys.argv[1]
     ports = range(1, 10001)
     results = scan_host(host, ports)
     output_results(host, results)
