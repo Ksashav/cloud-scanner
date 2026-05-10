@@ -2,14 +2,14 @@ import boto3
 import json
 from datetime import datetime
 
-def save_results_to_s3(host, results, bucket_name):
+def save_results_to_s3(host, results, bucket_name, prefix="general"):
     """
     Save scan results as JSON to S3
     """
     s3 = boto3.client('s3')
     
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-    filename = f"scan_{host}_{timestamp}.json"
+    filename = f"{prefix}/scan_{host}_{timestamp}.json"
 
     data = {
         "host": host,
