@@ -82,7 +82,7 @@ def main():
 
     save_results_to_s3(bucket_name, results,
                        "cloud-scanner-results-250368538184", prefix="s3_checks")
-    print(f"Results saved to S3 bucket 'cloud-scanner-results-250368538184' with prefix 's3_checks'")
+    print("Results saved to S3 bucket 'cloud-scanner-results-250368538184' with prefix 's3_checks'")
 
 
 if __name__ == "__main__":
