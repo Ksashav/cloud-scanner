@@ -3,6 +3,7 @@ from botocore.exceptions import ClientError
 from utils import save_results_to_s3, output_results
 import sys
 
+
 def check_bucket_public_access(bucket_name):
     """Check if S3 bucket has public access blocked"""
     s3 = boto3.client('s3')
@@ -19,7 +20,8 @@ def check_bucket_public_access(bucket_name):
     except Exception as e:
         print(f"Error checking public access: {e}")
         return "unknown"
-    
+
+
 def check_bucket_versioning(bucket_name):
     """Check if S3 bucket has versioning enabled"""
     s3 = boto3.client('s3')
@@ -30,7 +32,8 @@ def check_bucket_versioning(bucket_name):
     except Exception as e:
         print(f"Error checking versioning: {e}")
         return "unknown"
-    
+
+
 def check_bucket_encryption(bucket_name):
     """Check if S3 bucket has encryption enabled"""
     s3 = boto3.client('s3')
@@ -42,7 +45,8 @@ def check_bucket_encryption(bucket_name):
             return "disabled"
         print(f"Error checking encryption: {e}")
         return "unknown"
-    
+
+
 def check_bucket_logging(bucket_name):
     """Check if S3 bucket has logging enabled"""
     s3 = boto3.client('s3')
@@ -59,7 +63,7 @@ def main():
     if len(sys.argv) < 2:
         print("Usage: python s3_checker.py <bucket_name>")
         sys.exit(1)
-        
+
     bucket_name = sys.argv[1]
     results = {
         "public_access": check_bucket_public_access(bucket_name),
@@ -75,9 +79,11 @@ def main():
             print(f" ✗ {key}: {value}")
         else:
             print(f" ? {key}: {value} (unknown)")
-    
-    save_results_to_s3(bucket_name, results, "cloud-scanner-results-250368538184", prefix="s3_checks")
+
+    save_results_to_s3(bucket_name, results,
+                       "cloud-scanner-results-250368538184", prefix="s3_checks")
     print(f"Results saved to S3 bucket 'cloud-scanner-results-250368538184' with prefix 's3_checks'")
 
+
 if __name__ == "__main__":
-    main()  
+    main()
