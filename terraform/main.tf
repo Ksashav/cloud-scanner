@@ -45,3 +45,18 @@ resource "aws_s3_bucket_logging" "scanner_results" {
   target_bucket = aws_s3_bucket.scanner_results.id
   target_prefix = "logs/"
 }
+
+resource "aws_ecr_repository" "cloud_scanner" {
+    name = "cloud-scanner"
+    image_tag_mutability = "IMMUTABLE"
+
+    image_scanning_configuration {
+      scan_on_push = true
+    }
+
+    tags = {
+        Project     = "cloud-scanner"
+        Environment = "dev"
+    }
+  
+}
