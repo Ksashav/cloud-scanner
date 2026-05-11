@@ -43,6 +43,7 @@ def main():
         print("Usage: python header_checker.py <host>")
         sys.exit(1)
     host = sys.argv[1]
+    
     headers = get_headers(host)
     if not headers:
         print("No headers found, skipping security header check.")
