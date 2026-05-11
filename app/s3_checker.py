@@ -1,6 +1,7 @@
 from botocore.exceptions import ClientError
 from utils import save_results_to_s3
 import sys
+import boto3
 
 
 def check_bucket_public_access(bucket_name):
