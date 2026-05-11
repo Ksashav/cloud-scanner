@@ -1,6 +1,5 @@
-import boto3
 from botocore.exceptions import ClientError
-from utils import save_results_to_s3, output_results
+from utils import save_results_to_s3
 import sys
 
 
