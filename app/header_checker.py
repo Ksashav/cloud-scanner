@@ -18,7 +18,7 @@ def get_headers(host):
 
 
 def check_security_headers(headers):
-    """Check for common security headers"""
+    """Check for a common security headers"""
     security_headers = [
         "Content-Security-Policy",
         "Strict-Transport-Security",
